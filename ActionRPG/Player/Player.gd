@@ -3,16 +3,13 @@ extends KinematicBody2D
 var velocity = Vector2.ZERO
 
 func _physics_process(delta):
-	if Input.is_action_pressed("ui_right"):
-		velocity.x = 3
-	elif Input.is_action_pressed("ui_left"):
-		velocity.x = -3
-	elif Input.is_action_pressed("ui_down"):
-		velocity.y = 3
-	elif Input.is_action_pressed("ui_up"):
-		velocity.y = -3
+	var inputVector = Vector2.ZERO
+	inputVector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	inputVector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	
+	if inputVector != Vector2.ZERO:
+		velocity = inputVector
 	else:
-		velocity.x = 0
-		velocity.y = 0
+		velocity = Vector2.ZERO
 	
 	move_and_collide(velocity)
