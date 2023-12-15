@@ -1,9 +1,5 @@
 extends Node2D
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	
-
 func create_grass_effect():
 	var GrassEffect = load("res://Effects/GrassEffect.tscn")
 	var grassEffect = GrassEffect.instance()
